@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'pages/home_page.dart';
 
 void main() {
-
-runApp(MyApp());
-
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,10 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
-      themeMode: ThemeMode.light,
-      theme: ThemeData(primarySwatch:Colors.deepPurple ),
-      darkTheme: ThemeData( 
+      themeMode: ThemeMode.dark,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      darkTheme: ThemeData(
         brightness: Brightness.dark,
+        primarySwatch: Colors.deepPurple, // Ensuring the primary color is consistent
       ),
     );
   }
