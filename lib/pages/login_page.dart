@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:project_1/pages/home_page.dart';
+import 'package:project_1/utils/routes.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      '/': (context) => Scaffold(body: LoginPage()),
+      MyRoutes.homeRoute: (context) => HomePage(),
+    },
+  ));
+}
 
 class LoginPage extends StatelessWidget {
   @override
@@ -32,7 +45,7 @@ class LoginPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min, // Centers the column within the available space
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 500.0,vertical: 10.0), // Add padding to center the text fields
+                  padding: const EdgeInsets.symmetric(horizontal: 500.0, vertical: 10.0), // Adjust padding to fit the screen
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: "ENTER USERNAME",
@@ -40,26 +53,26 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                 // Add space between the text fields
+                SizedBox(height: 20), // Add space between the text fields
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 500.0,vertical: 10.0), // Add padding to center the text fields
+                  padding: const EdgeInsets.symmetric(horizontal: 500.0, vertical: 10.0), // Adjust padding to fit the screen
                   child: TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "ENTER PASSWORD",
                       labelText: "PASSWORD",
                     ),
-                    
+
                   ),
-                 
+
                 ),
-                SizedBox(
-                  height: 20,
-                  ),
-                  ElevatedButton(onPressed:() {
-                    print("hi safi ahmad");
-                  }, child: Text("LOGIN")),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  },
+                  child: Text("LOGIN"),
+                ),
               ],
             ),
           ),
@@ -68,12 +81,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: LoginPage(),
-    ),
-  ));
 }

@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  // Removed the constructor with a parameter as it's not needed
   @override
   Widget build(BuildContext context) {
     return Scaffold(
