@@ -13,7 +13,15 @@ void main() {
   ));
 }
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+  
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool changebutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -32,7 +40,7 @@ class LoginPage extends StatelessWidget {
           ),
           Spacer(), // Adds space between the image and the text
           Text(
-            "WELCOME",
+            "WELCOME $name",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -51,6 +59,11 @@ class LoginPage extends StatelessWidget {
                       hintText: "ENTER USERNAME",
                       labelText: "USERNAME",
                     ),
+                    onChanged: (value) {
+                    name = value;
+                    setState(() {});
+                    },
+                    
                   ),
                 ),
                 SizedBox(height: 20), // Add space between the text fields
@@ -67,12 +80,42 @@ class LoginPage extends StatelessWidget {
 
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
+
+                InkWell(
+                  onTap: () async{
+                    setState(() {
+                      changebutton = true;
+                    });
+                    await Future.delayed(Duration(seconds: 1));
                     Navigator.pushNamed(context, MyRoutes.homeRoute);
                   },
-                  child: Text("LOGIN"),
-                ),
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1 ),
+                    width:changebutton ? 50: 120,
+                    height: 40,
+                    alignment: Alignment.center,
+                    
+                    child: changebutton? Icon(Icons.done,color: Colors.white,): Text("LOGIN",
+                    style: TextStyle(color: Colors.white),
+                    
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(8)
+                  
+                  
+                    ),
+                  ),
+                )
+                
+
+
+                //ElevatedButton(
+                //  onPressed: () {
+                //    Navigator.pushNamed(context, MyRoutes.homeRoute);
+                //  },
+                //  child: Text("LOGIN"),
+                //),
               ],
             ),
           ),
